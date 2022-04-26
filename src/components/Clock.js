@@ -1,31 +1,58 @@
-import React, { useEffect, useState  } from 'react'
+import React, { Component } from 'react'
 import { formatInTimeZone } from 'date-fns-tz'
 
-function Clock(props) {
-  const [ setTime ] = useState();
-  const date = new Date();
-  const {zone, time} = props;
+export default class ClockClass extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: null,
+      time: null
+    };
+  }
 
-  useEffect(() => {
+  componentDidMount() {
     setInterval(
       () => this.tick(), 
       1000
     );
-  })
-
-  this.tick = () => {
-    setTime({
-      date: new Date()
-    });
+      this.convertTime();
   }
 
-  return (
-    <div>      
-      <h1>Hello, world!</h1>      
-      <h2>It is {formatInTimeZone(date, zone, time)}.</h2>    
-    </div>
-  )
+  tick() {
+    const { format, state, } = this.props;
+    const date = new Date();
+    const getTime = formatInTimeZone(date, state, format);
+    let newTime = getTime.split(':')
+    let timeValue;
+    let hours = Number(newTime[0])
+    let minutes = Number(newTime[1])
+    let seconds = Number(newTime[2].split(' ', 1))
+
+    if (hours > 0 && hours <= 12) {
+        timeValue= "" + hours;
+      } else if (hours > 12) {
+        timeValue= "" + (hours - 12);
+      } else if (hours === 0) {
+        timeValue= "12";
+      }
+      
+      timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+      timeValue += (seconds < 10) ? ":0" + seconds : ":" + seconds;  // get seconds
+      timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
+    this.setState({
+      date: timeValue,
+    });
+  }
+  
+  render() {
+    const { zone } = this.props;
+    const { date } = this.state;
+    return (
+        <div className='card'> 
+            <h1>{zone} Time</h1>         
+            <h2>{ date }</h2>    
+      </div>
+    )
+  }
 }
-
-
-export default Clock;

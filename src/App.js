@@ -1,27 +1,27 @@
 import { render } from '@testing-library/react';
 import './App.css';
-// import Clock from './components/Clock';
-import ClockClass from './components/ClockClass';
-function App(props) {
+import Clock from './components/Clock';
+
+function App() {
   
   return (
     <>
-      <ClockClass 
+      <Clock 
         zone = 'East Coast'
         format = 'HH:mm:ss'
         state = 'America/New_York'
       /> 
-      <ClockClass 
+      <Clock 
         zone = 'Central'
         format = 'HH:mm:ss'
         state = 'America/Chicago'
       /> 
-      <ClockClass
+      <Clock
         zone = 'Mountain'
         format = 'HH:mm:ss'
         state = 'America/Denver'
       /> 
-      <ClockClass 
+      <Clock 
         zone = 'Pacific'
         format = 'HH:mm:ss'
         state = 'America/Los_Angeles'
