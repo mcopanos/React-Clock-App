@@ -49,7 +49,8 @@ export default class ClockClass extends Component {
     return (
         <div className='card'> 
             <h1>{ zone } Time</h1>         
-            <h2>{ date }</h2>    
+            <h2>{ date }</h2>
+            <button className='btn'>States in this Zone</button>    
       </div>
     )
   }

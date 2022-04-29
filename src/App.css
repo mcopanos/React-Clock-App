@@ -9,9 +9,9 @@
 }
 
 .card {
-  border: 1px solid #d4d8d7;
+  border: 1px solid azure;
   border-radius: 5px;
-  padding: 10px;
+  padding: 20px 10px;
   margin: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   min-width: 275px;
@@ -19,4 +19,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.btn {
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  color: azure;
+  border: 1px solid azure;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+  padding: 15px 10px;
+  width: 75%;
+  margin: auto;
+  transition-duration: 0.4s;
+}
+
+.btn:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.13);
 }
