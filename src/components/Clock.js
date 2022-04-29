@@ -16,6 +16,10 @@ export default class ClockClass extends Component {
     );
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+  
   tick() {
     const { format, state, } = this.props;
     const date = new Date();
