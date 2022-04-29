@@ -5,8 +5,7 @@ export default class ClockClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null,
-      time: null
+      date: null
     };
   }
 
@@ -15,7 +14,6 @@ export default class ClockClass extends Component {
       () => this.tick(), 
       1000
     );
-      this.convertTime();
   }
 
   tick() {
@@ -50,7 +48,7 @@ export default class ClockClass extends Component {
     const { date } = this.state;
     return (
         <div className='card'> 
-            <h1>{zone} Time</h1>         
+            <h1>{ zone } Time</h1>         
             <h2>{ date }</h2>    
       </div>
     )
