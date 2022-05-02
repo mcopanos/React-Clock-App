@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { formatInTimeZone } from 'date-fns-tz'
+import Button from './Button';
 
 export default class ClockClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null
+      date: null,
+      states: [],
+      showStates: false
     };
   }
 
@@ -14,6 +17,10 @@ export default class ClockClass extends Component {
       () => this.tick(), 
       1000
     );
+
+    this.setState({
+      states: [...this.props.states]
+    })
   }
 
   componentWillUnmount() {
@@ -46,15 +53,37 @@ export default class ClockClass extends Component {
       date: timeValue,
     });
   }
+
+  toggleStates = ()  => {
+    const {showStates} = this.state
+    this.setState({showStates: !showStates})
+  }
   
   render() {
     const { zone } = this.props;
-    const { date } = this.state;
+    const { date, states, showStates} = this.state;
     return (
+      <div className='section'>
         <div className='card'> 
             <h1>{ zone } Time</h1>         
-            <h2>{ date }</h2>    
-      </div>
+            <h2>{ date }</h2>
+            <Button className='btn' toggleStates={this.toggleStates}/>
+          
+            
+        </div>
+        {
+          showStates &&
+          <div className='card-2'>
+            { states.map((state, key) => (
+              <ul>
+                <li key={key}>
+                  {state}
+                </li>
+              </ul>
+            ))}
+          </div>
+        }
+      </div>  
     )
   }
 }
