@@ -35,7 +35,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 275px;
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  background-color: rgba(22, 181, 212, 1);
+  z-index: 1;
 }
 
 .card-2 ul {

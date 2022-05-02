@@ -7,7 +7,8 @@ export default class ClockClass extends Component {
     super(props);
     this.state = {
       date: null,
-      states: []
+      states: [],
+      showStates: false
     };
   }
 
@@ -48,27 +49,37 @@ export default class ClockClass extends Component {
       date: timeValue,
     });
   }
+
+  toggleStates = ()  => {
+    const {showStates} = this.state
+    this.setState({showStates: !showStates})
+  }
   
   render() {
     const { zone } = this.props;
-    const { date, states } = this.state;
+    const { date, states, showStates} = this.state;
     return (
       <div className='section'>
         <div className='card'> 
             <h1>{ zone } Time</h1>         
             <h2>{ date }</h2>
-            <Button />
+            <Button className='btn' toggleStates={this.toggleStates}/>
+          
+            
         </div>
-        <div className='card-2'>
-          { states.map((state, key) => (
-            <ul>
-              <li key={key}>
-                {state}
-              </li>
-            </ul>
-          ))}
-        </div>
-      </div>
+        {
+          showStates &&
+          <div className='card-2'>
+            { states.map((state, key) => (
+              <ul>
+                <li key={key}>
+                  {state}
+                </li>
+              </ul>
+            ))}
+          </div>
+        }
+      </div>  
     )
   }
 }
